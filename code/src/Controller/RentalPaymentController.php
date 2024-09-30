@@ -41,7 +41,7 @@ class RentalPaymentController extends AbstractController
             return new JsonResponse(['status' => 'Pago registrado!'], Response::HTTP_CREATED);
         }
 
-        return new JsonResponse($form->getErrors(), Response::HTTP_BAD_REQUEST);
+        return new JsonResponse($form->getErrors(true), Response::HTTP_BAD_REQUEST);
     }
 
     /**

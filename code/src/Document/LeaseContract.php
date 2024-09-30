@@ -16,7 +16,7 @@ class LeaseContract
     private $id;
 
     /**
-     * @MongoDB\ReferenceOne(targetDocument=User::class)
+     * @MongoDB\ReferenceOne(targetDocument="App\Document\User", storeAs="id")
      * @Assert\NotNull(message="El arrendatario es obligatorio.")
      */
     private $lessee;

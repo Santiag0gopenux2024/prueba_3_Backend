@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Document;
 
+use DateTime;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -16,13 +17,13 @@ class RentalPayment
     private $id;
 
     /**
-     * @MongoDB\ReferenceOne(targetDocument=User::class)
+     * @MongoDB\ReferenceOne(targetDocument="App\Document\User", storeAs="id")
      * @Assert\NotNull(message="El arrendatario es obligatorio.")
      */
     private $lessee;
 
     /**
-     * @MongoDB\ReferenceOne(targetDocument=LeaseContract::class)
+     * @MongoDB\ReferenceOne(targetDocument="App\Document\LeaseContract", storeAs="id")
      * @Assert\NotNull(message="La propiedad es obligatoria.")
      */
     private $property;
@@ -31,7 +32,7 @@ class RentalPayment
      * @MongoDB\Field(type="date")
      * @Assert\NotBlank(message="La fecha de pago es obligatoria.")
      */
-    private $paymentDate;
+    private ?DateTime $paymentDate = null;
 
     /**
      * @MongoDB\Field(type="float")
@@ -68,19 +69,19 @@ class RentalPayment
         return $this;
     }
 
-    public function getPaymentDate()
+    public function getPaymentDate(): ?\DateTime
     {
         return $this->paymentDate;
     }
 
-    public function setPaymentDate(\DateTime $paymentDate): self
+    public function setPaymentDate(?\DateTime $paymentDate): self
     {
         $this->paymentDate = $paymentDate;
 
         return $this;
     }
 
-    public function getAmount()
+    public function getAmount(): ?float
     {
         return $this->amount;
     }

@@ -80,21 +80,4 @@ class RentalPaymentController extends AbstractController
 
         return new JsonResponse($form->getErrors(), Response::HTTP_BAD_REQUEST);
     }
-
-    /**
-     * @Route("/payments/{id}", methods={"DELETE"})
-     */
-    public function delete(string $id): JsonResponse
-    {
-        $payment = $this->rentalPaymentRepository->findPaymentById($id);
-
-        if (!$payment) {
-            return new JsonResponse(['status' => 'Pago no encontrado'], Response::HTTP_NOT_FOUND);
-        }
-
-        $this->dm->remove($payment);
-        $this->dm->flush();
-
-        return new JsonResponse(['status' => 'Pago eliminado!'], Response::HTTP_OK);
-    }
 }

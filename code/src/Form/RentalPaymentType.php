@@ -23,10 +23,6 @@ class RentalPaymentType extends AbstractType
             ])
             ->add('property', DocumentType::class, [
                 'class' => LeaseContract::class,
-            ])
-            ->add('paymentDate', DateTimeType::class, [
-                'widget' => 'single_text',
-                'html5' => false,
             ]);
     }
 

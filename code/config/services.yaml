@@ -35,12 +35,12 @@ services:
             $registry: '@doctrine_mongodb'
             $documentClass: 'App\Document\User'
 
-    App\Repository\RentalPaymentRepository:
-        arguments:
-            $registry: '@doctrine_mongodb'
-            $documentClass: 'App\Document\RentalPayment'
-
     App\Repository\LeaseContractRepository:
         arguments:
             $registry: '@doctrine_mongodb'
             $documentClass: 'App\Document\LeaseContract'
+
+    App\Repository\RentalPaymentRepository:
+        arguments:
+            $registry: '@doctrine_mongodb'
+            $documentClass: 'App\Document\RentalPayment'

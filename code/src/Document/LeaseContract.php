@@ -19,7 +19,7 @@ class LeaseContract
      * @MongoDB\ReferenceOne(targetDocument="App\Document\User", storeAs="id")
      * @Assert\NotNull(message="El arrendatario es obligatorio.")
      */
-    private $lessee;
+    private User $lessee;
 
     /**
      * @MongoDB\Field(type="float")
@@ -31,14 +31,14 @@ class LeaseContract
      * @MongoDB\Field(type="string")
      * @Assert\Regex("/^[A-Z]{3}[0-9]{3}$/", message="El código de propiedad debe contener 3 letras y 3 números.")
      */
-    private $propertyCode;
+    private string $propertyCode;
 
     public function getId()
     {
         return $this->id;
     }
 
-    public function getLessee()
+    public function getLessee(): User
     {
         return $this->lessee;
     }
@@ -62,7 +62,7 @@ class LeaseContract
         return $this;
     }
 
-    public function getPropertyCode()
+    public function getPropertyCode(): LeaseContract
     {
         return $this->propertyCode;
     }

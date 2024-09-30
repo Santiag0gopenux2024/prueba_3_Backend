@@ -22,5 +22,25 @@ services:
             - '../src/Document/'
             - '../src/Kernel.php'
 
+    kernel.event_listener.json_request_transformer:
+        class: App\Event\JsonRequestTransformerEventListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest, priority: 100 }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Repository\UserRepository:
+        arguments:
+            $registry: '@doctrine_mongodb'
+            $documentClass: 'App\Document\User'
+
+    App\Repository\RentalPaymentRepository:
+        arguments:
+            $registry: '@doctrine_mongodb'
+            $documentClass: 'App\Document\RentalPayment'
+
+    App\Repository\LeaseContractRepository:
+        arguments:
+            $registry: '@doctrine_mongodb'
+            $documentClass: 'App\Document\LeaseContract'

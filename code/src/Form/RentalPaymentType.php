@@ -9,7 +9,7 @@ use App\Document\RentalPayment;
 use App\Document\User;
 use Doctrine\Bundle\MongoDBBundle\Form\Type\DocumentType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,7 +23,8 @@ class RentalPaymentType extends AbstractType
             ])
             ->add('property', DocumentType::class, [
                 'class' => LeaseContract::class,
-            ]);
+            ])
+            ->add('amount', NumberType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

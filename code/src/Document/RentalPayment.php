@@ -29,6 +29,12 @@ class RentalPayment
      */
     private $property;
 
+    /**
+     * @MongoDB\Field(type="float")
+     * @Assert\Positive(message="El valor debe ser positivo.")
+     */
+    private $amount;
+
     public function getId()
     {
         return $this->id;
@@ -54,6 +60,18 @@ class RentalPayment
     public function setProperty(LeaseContract $property): self
     {
         $this->property = $property;
+
+        return $this;
+    }
+
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(float $Amount): self
+    {
+        $this->amount = $Amount;
 
         return $this;
     }
